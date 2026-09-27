@@ -1,0 +1,18 @@
+# Private dataset
+data/dataset.xlsx
+
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Streamlit cache
+.streamlit/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+app_backup_before_ui_redesign.py
