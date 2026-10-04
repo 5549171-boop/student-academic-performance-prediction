@@ -1,0 +1,84 @@
+{
+  "numeric_ranges": {
+    "age": {
+      "min": 15.0,
+      "max": 25.0,
+      "median": 19.0
+    },
+    "year_of_study": {
+      "min": 1.0,
+      "max": 4.0,
+      "median": 1.0
+    },
+    "daily_time_hours": {
+      "min": 1.0,
+      "max": 13.0,
+      "median": 3.0
+    },
+    "study_time_frequency": {
+      "min": 0.0,
+      "max": 10.0,
+      "median": 5.0
+    }
+  },
+  "categorical_options": {
+    "usage_timing": [
+      "After completing studying",
+      "Before studying",
+      "During studying",
+      "Late at night",
+      "While studying"
+    ],
+    "multitasking": [
+      "Always",
+      "Never",
+      "Often",
+      "Rarely",
+      "Sometimes"
+    ],
+    "use_during_study_hours": [
+      "no",
+      "yes"
+    ],
+    "concentration_effect": [
+      "Highly distracting",
+      "Moderately distracting",
+      "No effect",
+      "Slightly helpful",
+      "Very helpful"
+    ],
+    "academic_purpose_use": [
+      "Always",
+      "Never",
+      "Often",
+      "Rarely",
+      "Sometimes"
+    ],
+    "missed_deadlines": [
+      "Frequently",
+      "Never",
+      "Occasionally",
+      "Rarely"
+    ]
+  },
+  "multi_label_options": {
+    "platforms": [
+      "Instagram",
+      "WhatsApp",
+      "YouTube",
+      "Snapchat",
+      "Reddit",
+      "LinkedIn",
+      "Discord",
+      "Pinterest",
+      "Grok",
+      "AI Fiesta"
+    ],
+    "purpose": [
+      "Academic learning",
+      "Entertainment",
+      "Communication with friends/family",
+      "Professional networking"
+    ]
+  }
+}

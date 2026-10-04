@@ -26,9 +26,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 from recommendations import analyze_responses
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(PROJECT_ROOT, "model", "model_pipeline.joblib")
-METRICS_PATH = os.path.join(PROJECT_ROOT, "model", "model_metrics.json")
-SCHEMA_PATH = os.path.join(PROJECT_ROOT, "model", "feature_schema.json")
+MODEL_PATH = os.path.join(PROJECT_ROOT, "model", "model_pipeline_v2.joblib")
+METRICS_PATH = os.path.join(PROJECT_ROOT, "model", "model_metrics_v2.json")
+SCHEMA_PATH = os.path.join(PROJECT_ROOT, "model", "feature_schema_v2.json")
 
 st.set_page_config(
     page_title="Academic AI — CGPA Prediction & Social Media Impact",
@@ -370,19 +370,34 @@ elif page == "Predict":
         inputs = {
             "age": age,
             "year_of_study": year_of_study,
-            "platforms": ", ".join(platforms),
-            "purpose": ", ".join(purpose),
             "daily_time_hours": daily_time_hours,
+            "study_time_frequency": study_time_frequency,
             "usage_timing": usage_timing,
             "multitasking": multitasking,
             "use_during_study_hours": use_during_study_hours,
-            "study_time_frequency": study_time_frequency,
             "concentration_effect": concentration_effect,
             "academic_purpose_use": academic_purpose_use,
             "missed_deadlines": missed_deadlines,
         }
+
+        # Build the exact engineered feature columns used by V2.
+        for platform in schema["multi_label_options"]["platforms"]:
+            inputs[f"platform_{platform}"] = 1 if platform in platforms else 0
+
+        for purpose_item in schema["multi_label_options"]["purpose"]:
+            inputs[f"purpose_{purpose_item}"] = 1 if purpose_item in purpose else 0
+
+        inputs["platform_count"] = len(platforms)
+        inputs["purpose_count"] = len(purpose)
+
         X_new = pd.DataFrame([inputs])
+
+        # Keep the input order exactly aligned with the trained V2 model.
+        if hasattr(model, "feature_names_in_"):
+            X_new = X_new.reindex(columns=model.feature_names_in_)
+
         prediction = float(model.predict(X_new)[0])
+        prediction = max(0.0, min(10.0, prediction))
 
         st.session_state.last_inputs = inputs
         st.session_state.last_prediction = prediction

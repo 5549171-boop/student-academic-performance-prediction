@@ -1,0 +1,33 @@
+{
+  "n_samples": 208,
+  "n_train": 166,
+  "n_test": 42,
+  "test_mae": 1.021,
+  "test_rmse": 1.2933,
+  "test_r2": -0.0576,
+  "cv_r2_mean": -0.0495,
+  "cv_r2_std": 0.1014,
+  "cv_mae_mean": 1.1475,
+  "cv_mae_std": 0.1185,
+  "cv_rmse_mean": 1.5179,
+  "cv_rmse_std": 0.1612,
+  "random_state": 42,
+  "model": "Ridge",
+  "ridge_alpha": 2.0,
+  "features_used": [
+    "age",
+    "year_of_study",
+    "daily_time_hours",
+    "study_time_frequency",
+    "usage_timing",
+    "multitasking",
+    "use_during_study_hours",
+    "concentration_effect",
+    "academic_purpose_use",
+    "missed_deadlines",
+    "platforms",
+    "purpose"
+  ],
+  "target": "cgpa",
+  "notes": "Personal identifiers, CGPA_Binary, the compared-to-previous-semester field, and the self-reported academic-impact score were excluded. Platform spellings and obvious garbage values were normalized before feature construction."
+}
